@@ -6,18 +6,22 @@ import java.util.Map;
 
 public class BuildingDTO extends AbstractDTO{
     private String name;
-    private Long floorArea;
     private String district;
     private String ward;
     private String street;
+    private Long floorArea;
     private Long numberOfBasement;
     private String direction;
     private Long level;
     private String rentArea;
-    private Long rentPrice;
+    private Integer rentPrice;
+    private String serviceFee;
+    private String motoFee;
+    private String carFee;
     private String managerName;
     private String managerPhone;
     private List<String> typeCode;
+
 
     public String getName() {
         return name;
@@ -91,11 +95,11 @@ public class BuildingDTO extends AbstractDTO{
         this.rentArea = rentArea;
     }
 
-    public Long getRentPrice() {
+    public Integer getRentPrice() {
         return rentPrice;
     }
 
-    public void setRentPrice(Long rentPrice) {
+    public void setRentPrice(Integer rentPrice) {
         this.rentPrice = rentPrice;
     }
 
@@ -122,5 +126,17 @@ public class BuildingDTO extends AbstractDTO{
 
     public void setTypeCode(List<String> typeCode) {
         this.typeCode = typeCode;
+    }
+
+    public void setServiceFee(String serviceFee) {
+        this.serviceFee = serviceFee;
+    }
+
+    public void setMotoFee(String motoFee) {
+        this.motoFee = motoFee;
+    }
+
+    public void setCarFee(String carFee) {
+        this.carFee = carFee;
     }
 }

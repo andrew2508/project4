@@ -5,8 +5,8 @@ import java.util.*;
 
 public enum TypeCode {
     TANG_TRET("Tầng trẹt"),
-    NOI_THAT("Nội thất"),
-    NGUYEN_CAN("Nguyên căn");
+    NGUYEN_CAN("Nguyên căn"),
+    NOI_THAT("Nội thất");
 
     private final String name;
     TypeCode(String name) {
@@ -16,9 +16,9 @@ public enum TypeCode {
         return name;
     }
     public static Map<String, String> type(){
-        Map<String, String> typeCodes = new TreeMap<>();
+        Map<String, String> typeCodes = new LinkedHashMap<>();
         for(TypeCode item : TypeCode.values()){
-            typeCodes.put(item.getName(), item.name);
+            typeCodes.put(item.toString(), item.name);
         }
         return typeCodes;
     }

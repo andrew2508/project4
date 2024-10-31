@@ -42,6 +42,7 @@
               <div class="widget-body" style="font-family: 'Times New Roman', Times, serif;">
                 <div class="widget-main">
                   <form:form id = "listForm" modelAttribute="modelSearch" action="${buildingListURL}" method="GET">
+<%--                   modelAttribute dùng để gán giá trị trc đó--%>
                       <div class = "row">
                     <div class = "form-group">
                       <div class="col-xs-12">
@@ -73,7 +74,7 @@
                         </div>
                         <div class="col-sm-5">
                           <label class="name">Đường</label>
-                          <input type="text" class="form-control" name="street" value="">
+                          <form:input class="form-control" path="street"/>
                         </div>
                       </div>
                     </div>
@@ -81,15 +82,15 @@
                       <div class="col-xs-12">
                         <div class="col-sm-4">
                           <label class="name">Số tầng hầm</label>
-                          <input type="text" class="form-control" name="numerOfBasement" value="">
+                          <form:input class="form-control" path="numberOfBasement"/>
                         </div>
                         <div class="col-sm-4">
                           <label class="name">Hướng</label>
-                          <input type="text" class="form-control" name="direction" value="">
+                          <form:input class="form-control" path="direction"/>
                         </div>
                         <div class="col-sm-4">
                           <label class="name">Hạng</label>
-                          <input type="number" class="form-control" name="level" value="">
+                          <form:input class="form-control" path="level"/>
                         </div>
                       </div>
                     </div>
@@ -97,19 +98,19 @@
                       <div class="col-xs-12">
                         <div class="col-sm-3">
                           <label class="name">Diện tích từ</label>
-                          <input type="number" class="form-control" name="areaFrom" value="${modelSearch.areaFrom}">
+                          <form:input class="form-control" path="areaFrom"/>
                         </div>
                         <div class="col-sm-3">
                           <label class="name">Diện tích đến</label>
-                          <input type="number" class="form-control" name="areaTo" value="${modelSearch.areaTo}">
+                          <form:input class="form-control" path="areaTo"/>
                         </div>
                         <div class="col-sm-3">
                           <label class="name">Giá thuê từ</label>
-                          <input type="number" class="form-control" name="rentPriceFrom" value="">
+                          <form:input class="form-control" path="rentPriceFrom"/>
                         </div>
                         <div class="col-sm-3">
                           <label class="name">Giá thuê đến</label>
-                          <input type="number" class="form-control" name="rentPriceTo" value="">
+                          <form:input class="form-control" path="rentPriceTo"/>
                         </div>
                       </div>
                     </div>
@@ -117,11 +118,11 @@
                       <div class="col-xs-12">
                         <div class="col-sm-5">
                           <label class="name">Tên quản lý</label>
-                          <input type="text" class="form-control" name="managerName" value="">
+                          <form:input class="form-control" path="managerName"/>
                         </div>
                         <div class="col-sm-5">
                           <label class="name">SĐT quản lý</label>
-                          <input type="text" class="form-control" name="managerPhone" value="">
+                          <form:input class="form-control" path="managerPhone"/>
                         </div>
                         <div class="col-sm-2">
                           <label class="name">Nhân viên</label>
@@ -198,6 +199,7 @@
                 <th>DT Sàn</th>
                 <th>DT Trống</th>
                 <th>DT Thuê</th>
+                <th>Giá thuê</th>
                 <th>Phí môi giới</th>
                 <th>Thao tác</th>
               </tr>
@@ -219,9 +221,10 @@
                       <td>${item.managerName}</td>
                       <td>${item.managerPhone}</td>
                       <td>${item.floorArea}</td>
+                      <td>${item.emptyArea}</td>
                       <td>${item.rentArea}</td>
-                      <td>${item.id}</td>
-                      <td>${item.id}</td>
+                      <td>${item.rentPrice}</td>
+                      <td>${item.brokerageFee}</td>
                       <td>
                         <div class="hidden-sm hidden-xs btn-group">
                           <button class="btn btn-xs btn-success" title="Giao tòa nhà" onclick="assigmentBuilding(${item.id})">
@@ -252,7 +255,7 @@
 			<div class="modal-dialog">
 
 			  <!-- Modal content-->
-			  <div class="modal-content">
+			  <div class="modal-content"> 
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal">&times;</button>
 				  <h4 class="modal-title">Danh sách nhân viên</h4>
@@ -281,12 +284,6 @@
 			</div>
         </div>
   <script>
-    function assigmentBuilding(buildingId){
-      $('#assignmentBuildingModal').modal();
-      loadStaff(buildingId);
-      $('#buildingId').val(buildingId);
-    }
-
     function loadStaff(buildingId){
         $.ajax({
         url: "${buildingAPI}/"+buildingId +'/staffs',
@@ -312,8 +309,13 @@
         }
       });
     }
+    function assigmentBuilding(buildingId){
+      $('#assignmentBuildingModal').modal();
+      loadStaff(buildingId);
+      $('#buildingId').val(buildingId);
+    }
     $('#btnassignmentBuilding').click(function(e){
-      e.preventDefault();
+      e.preventDefault(); // Tránh load nham trang
       var data = {};
       data['buildingId'] = $('#buildingId').val();
       var staffs = $('#staffList').find('tbody input[type = checkbox]:checked').map(function(){

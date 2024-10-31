@@ -150,4 +150,5 @@ public class BuildingSearchRequest extends AbstractDTO {
     public void setLevel(Long level) {
         this.level = level;
     }
+
 }

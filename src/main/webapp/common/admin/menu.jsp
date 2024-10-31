@@ -38,33 +38,12 @@
             <span class="btn btn-danger"></span>
         </div>
     </div>
-<%--    <ul class="nav nav-list">--%>
-<%--    <li class="">--%>
-<%--        <a href="#" class="dropdown-toggle">--%>
-<%--            &lt;%&ndash;<i class="menu-icon fa fas fa-users"></i>&ndash;%&gt;--%>
-<%--            &lt;%&ndash;<span class="menu-text">QL Tòa Nhà</span>&ndash;%&gt;--%>
-<%--            &lt;%&ndash;<b class="arrow fa fa-angle-down"></b>&ndash;%&gt;--%>
-<%--            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building-fill" viewBox="0 0 16 16">--%>
-<%--                <path d="M3 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h3v-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V16h3a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H3Zm1 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5ZM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM7.5 5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM4.5 8h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5Z"/>--%>
-<%--                <span class="menu-text"> Quản Lý Tòa Nhà</span>--%>
-<%--            </svg>--%>
-<%--        </a>--%>
-<%--        <b class="arrow"></b>--%>
-<%--        <ul class="submenu">--%>
-<%--            <li class="">--%>
-<%--                <a href='<c:url value='/admin/building-list'/>'>--%>
-<%--                    <i class="menu-icon fa fa-caret-right"></i>--%>
-<%--                    Danh sách tòa nhà--%>
-<%--                </a>--%>
-<%--                <b class="arrow"></b>--%>
-<%--            </li>--%>
-<%--        </ul>--%>
-<%--    </li>--%>
-<%--</ul>--%>
     <ul class="nav nav-list">
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fas fa-users"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-buildings-fill" viewBox="0 0 16 16">
+                    <path d="M15 .5a.5.5 0 0 0-.724-.447l-8 4A.5.5 0 0 0 6 4.5v3.14L.342 9.526A.5.5 0 0 0 0 10v5.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V14h1v1.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5zM2 11h1v1H2zm2 0h1v1H4zm-1 2v1H2v-1zm1 0h1v1H4zm9-10v1h-1V3zM8 5h1v1H8zm1 2v1H8V7zM8 9h1v1H8zm2 0h1v1h-1zm-1 2v1H8v-1zm1 0h1v1h-1zm3-2v1h-1V9zm-1 2h1v1h-1zm-2-4h1v1h-1zm3 0v1h-1V7zm-2-2v1h-1V5zm1 0h1v1h-1z"/>
+                </svg>
                 <span class="menu-text">Quản Lý Tòa Nhà</span>
             </a>
             <b class="arrow"></b>
@@ -79,25 +58,7 @@
             </ul>
         </li>
     </ul>
-
-<%--    <ul class="nav nav-list">--%>
-<%--        <li class="">--%>
-<%--            <a href="#" class="dropdown-toggle">--%>
-<%--                <i class="menu-icon fa fas fa-users"></i>--%>
-<%--                <span class="menu-text">Quản Lý Khách Hàng</span>--%>
-<%--            </a>--%>
-<%--            <b class="arrow"></b>--%>
-<%--            <ul class="submenu">--%>
-<%--                <li class="">--%>
-<%--                    <a href='/admin/customer-list'>--%>
-<%--                        <i class="menu-icon fa fa-caret-right"></i>--%>
-<%--                        Danh sách khách hàng--%>
-<%--                    </a>--%>
-<%--                    <b class="arrow"></b>--%>
-<%--                </li>--%>
-<%--            </ul>--%>
-<%--        </li>--%>
-<%--    </ul>--%>
+    
     <div class="sidebar-toggle sidebar-collapse">
         <i class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
     </div>
