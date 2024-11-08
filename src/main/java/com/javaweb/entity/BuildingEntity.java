@@ -35,7 +35,6 @@ public class BuildingEntity extends BaseEntity {
     @OneToMany(mappedBy = "building",fetch = FetchType.LAZY)
     private List<RentAreaEntity> rentArea = new ArrayList<>();
 
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "assignmentbuilding",
                joinColumns = @JoinColumn(name = "buildingid", nullable = false),

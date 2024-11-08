@@ -43,6 +43,7 @@ public class BuildingController {
     @RequestMapping(value = "/admin/building-edit", method = RequestMethod.GET)
     public ModelAndView buildingEdit(@ModelAttribute("buildingEdit") BuildingDTO buildingDTO, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/building/edit");
+        mav.addObject("buildingEdit",buildingDTO);
         mav.addObject("districts", District.type());
         mav.addObject("typeCodes", TypeCode.type());
         return mav;
@@ -52,9 +53,7 @@ public class BuildingController {
     @RequestMapping(value = "/admin/building-edit-{id}", method = RequestMethod.GET)
     public ModelAndView buildingEdit(@PathVariable("id") Long Id, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/building/edit");
-        BuildingDTO buildingDTO = new BuildingDTO();
-        buildingDTO.setId(Id);
-        buildingDTO.setName("An Building");
+        BuildingDTO buildingDTO = buildingService.findBuildingDTO(Id);
         mav.addObject("buildingEdit",buildingDTO);
         mav.addObject("districts", District.type());
         mav.addObject("typeCodes", TypeCode.type());
