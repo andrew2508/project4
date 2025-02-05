@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+
 @Component
 public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
-
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Override
@@ -38,6 +38,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 //            url = SystemConstant.ADMIN_HOME;
 //        }
 //        return url;
+        // trả ra đường dẫn mặc đinh
         if (isUser(roles)) {
             url = SystemConstant.HOME;
         } else if (isAdmin(roles)) {
@@ -55,7 +56,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     }
 
     private boolean isAdmin(List<String> roles) {
-        if (roles.contains(SystemConstant.ADMIN_ROLE) || roles.contains(SystemConstant.MANAGER_ROLE)) {
+        if (roles.contains(SystemConstant.STAFF_ROLE) || roles.contains(SystemConstant.MANAGER_ROLE)) {
             return true;
         }
         return false;

@@ -23,6 +23,7 @@ public enum District {
         return districtName;
     }
 
+
     public static Map<String,String> type(){
         Map<String,String> listType = new TreeMap<>();
         for(District item : District.values()){

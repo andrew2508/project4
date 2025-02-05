@@ -23,12 +23,17 @@ public class BuildingEntity extends BaseEntity {
     @Column(name = "floorarea")
     private Integer floorarea;
     @Column(name = "rentprice")
-    private Integer rentprice;
+    private Integer rentPrice;
     @Column(name = "servicefee")
     private String servicefee;
     @Column(name = "brokeragefee")
     private Double brokeragefee;
-
+    @Column(name = "district")
+    private String district;
+    @Column(name = "type")
+    private String type;
+    @OneToMany(mappedBy = "building",fetch = FetchType.LAZY)
+    private List<RentAreaEntity> rentArea = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "assignmentbuilding",
@@ -86,11 +91,11 @@ public class BuildingEntity extends BaseEntity {
     public void setFloorarea(Integer floorarea) {
         this.floorarea = floorarea;
     }
-    public Integer getRentprice() {
-        return rentprice;
+    public Integer getRentPrice() {
+        return rentPrice;
     }
-    public void setRentprice(Integer rentprice) {
-        this.rentprice = rentprice;
+    public void setRentPrice(Integer rentPrice) {
+        this.rentPrice = rentPrice;
     }
     public String getServicefee() {
         return servicefee;
@@ -103,5 +108,37 @@ public class BuildingEntity extends BaseEntity {
     }
     public void setBrokeragefee(Double brokeragefee) {
         this.brokeragefee = brokeragefee;
+    }
+
+    public String getManagerphone() {
+        return managerphone;
+    }
+
+    public void setManagerphone(String managerphone) {
+        this.managerphone = managerphone;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<RentAreaEntity> getRentArea() {
+        return rentArea;
+    }
+
+    public void setRentArea(List<RentAreaEntity> rentArea) {
+        this.rentArea = rentArea;
     }
 }

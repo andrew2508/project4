@@ -17,9 +17,9 @@
         <ul class="breadcrumb">
           <li>
             <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="#">Home</a>
+            <a href="#">Trang chủ</a>
           </li>
-          <li class="active">Dashboard</li>
+          <li class="active">Chi tiết tòa nhà</li>
         </ul><!-- /.breadcrumb -->
       </div>
 
@@ -27,11 +27,7 @@
 
         <div class="page-header">
           <h1>
-            Dashboard
-            <small>
-              <i class="ace-icon fa fa-angle-double-right"></i>
-              overview &amp; stats
-            </small>
+            Thông tin tòa nhà
           </h1>
 
         </div><!-- /.page-header -->
@@ -64,13 +60,13 @@
               <div class="form-group">
                 <label class="col-xs-3">Phường</label>
                 <div class="col-xs-9">
-                  <input class="form-control" type="text" id="ward" name="ward" value="">
+                  <form:input class="form-control" path="ward"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-3">Đường</label>
                 <div class="col-xs-9">
-                  <input class="form-control" type="text" id="street" name="street" value="">
+                  <form:input class="form-control" path="street"/>
                 </div>
               </div>
               <div class="form-group">
@@ -82,37 +78,37 @@
               <div class="form-group">
                 <label class="col-xs-3">Số tầng hầm</label>
                 <div class="col-xs-9">
-                  <input class="form-control" type="number" id="numberofbasement" name="numberofbasement" value="">
+                  <form:input class="form-control" path="numberOfBasement"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-3">Diện tích sàn</label>
                 <div class="col-xs-9">
-                  <input class="form-control" type="text" id="floorarea" name="floorarea" value="">
+                  <form:input type="text" class="form-control" path="floorArea"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-3">Hướng</label>
                 <div class="col-xs-9">
-                  <input class="form-control" type="text" id="direction" name="direction" value="">
+                  <form:input class="form-control" path="direction"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-3">Hạng</label>
                 <div class="col-xs-9">
-                  <input class="form-control" type="text" id="level" name="level" value="">
+                  <form:input class="form-control" path="level"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-3">Diện tích thuê</label>
                 <div class="col-xs-9">
-                  <input class="form-control" type="text" id="rentarea" name="rentarea" value="">
+                  <form:input class="form-control" path="rentArea"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-3">Giá thuê</label>
                 <div class="col-xs-9">
-                  <input class="form-control" type="number" id="rentprice" name="rentprice" value="">
+                  <form:input class="form-control" path="rentPrice"/>
                 </div>
               </div>
               <div class="form-group">
@@ -178,13 +174,13 @@
               <div class="form-group">
                 <label class="col-xs-3">Tên quản lý</label>
                 <div class="col-xs-9">
-                  <input class="form-control" type="text" id="managername" name="managername" value="">
+                  <form:input class="form-control" path="managerName"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-3">SĐT quản lý</label>
                 <div class="col-xs-9">
-                  <input class="form-control" type="text" id="managerphonenumber" name="managerphonenumber" value="">
+                  <form:input class="form-control" path="managerPhone"/>
                 </div>
               </div>
               <div class="form-group">
@@ -258,12 +254,12 @@
       data: JSON.stringify(data),
       contentType:"application/json",
       dataType: "JSON",
-      success: function (respond){
+      success: function (response){
         console.log("Success");
       },
-      error: function(respond){
+      error: function(response){
         console.log("failed");
-        console.log(respond);
+        console.log(response);
       }
     });
   }

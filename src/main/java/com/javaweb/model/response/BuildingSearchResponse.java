@@ -8,13 +8,13 @@ public class BuildingSearchResponse extends AbstractDTO {
 	private String createdDate;
 	private String name;
 	private String address;
-	private Long numberOfBasement;
+	private Integer numberOfBasement;
 	private String managerName;
 	private String managerPhone;
-	private Long floorArea;
+	private Integer floorArea;
 	private String rentArea;
     private String emptyArea;
-    private Long rentPrice;
+    private Integer rentPrice;
     private String serviceFee;
     private Double brokerageFee;
 
@@ -47,10 +47,10 @@ public class BuildingSearchResponse extends AbstractDTO {
 	public void setManagerPhoneNumber(String managerPhoneNumber) {
 		this.managerPhone = managerPhoneNumber;
 	}
-	public Long getFloorArea() {
+	public Integer getFloorArea() {
 		return floorArea;
 	}
-	public void setFloorArea(Long floorArea) {
+	public void setFloorArea(Integer floorArea) {
 		this.floorArea = floorArea;
 	}
 	public String getEmptyArea() {
@@ -59,10 +59,10 @@ public class BuildingSearchResponse extends AbstractDTO {
 	public void setEmptyArea(String emptyArea) {
 		this.emptyArea = emptyArea;
 	}
-	public Long getRentPrice() {
+	public Integer getRentPrice() {
 		return rentPrice;
 	}
-	public void setRentPrice(Long rentPrice) {
+	public void setRentPrice(Integer rentPrice) {
 		this.rentPrice = rentPrice;
 	}
 	public String getServiceFee() {
@@ -90,11 +90,11 @@ public class BuildingSearchResponse extends AbstractDTO {
 		this.address = address;
 	}
 
-	public Long getNumberOfBasement() {
+	public Integer getNumberOfBasement() {
 		return numberOfBasement;
 	}
 
-	public void setNumberOfBasement(Long numberOfBasement) {
+	public void setNumberOfBasement(Integer numberOfBasement) {
 		this.numberOfBasement = numberOfBasement;
 	}
 

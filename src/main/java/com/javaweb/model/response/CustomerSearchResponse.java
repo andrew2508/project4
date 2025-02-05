@@ -1,13 +1,25 @@
-package com.javaweb.model.dto;
+package com.javaweb.model.response;
 
-public class CustomerDTO extends AbstractDTO{
+import com.javaweb.model.dto.AbstractDTO;
+
+public class CustomerSearchResponse extends AbstractDTO {
+    private Long id;
     private String fullname;
     private String phone;
     private String email;
-    private String companyname;
     private String demand;
     private String status;
-    private Boolean active;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFullname() {
         return fullname;
     }
@@ -32,14 +44,6 @@ public class CustomerDTO extends AbstractDTO{
         this.email = email;
     }
 
-    public String getCompanyname() {
-        return companyname;
-    }
-
-    public void setCompanyname(String companyname) {
-        this.companyname = companyname;
-    }
-
     public String getDemand() {
         return demand;
     }
@@ -54,13 +58,5 @@ public class CustomerDTO extends AbstractDTO{
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
     }
 }
