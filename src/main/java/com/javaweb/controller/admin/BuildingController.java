@@ -6,7 +6,7 @@ import com.javaweb.enums.District;
 import com.javaweb.enums.TypeCode;
 import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.model.request.BuildingSearchRequest;
-import com.javaweb.model.response.BuildingSearchResponse;
+import com.javaweb.security.utils.SecurityUtils;
 import com.javaweb.service.BuildingService;
 import com.javaweb.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Controller(value="buildingControllerOfAdmin")
 public class BuildingController {
@@ -31,12 +30,19 @@ public class BuildingController {
     @RequestMapping(value = "/admin/building-list", method = RequestMethod.GET)
     public ModelAndView buildingList(@ModelAttribute BuildingSearchRequest buildingSearchRequest, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/building/list");
-        mav.addObject("modelSearch", buildingSearchRequest);
+        mav.addObject("modelSearch", buildingSearchRequest); //hiện những dữ liệu vừa nhập lên ô
         // xuống data
-        mav.addObject("buildingList",buildingService.searchBuildings(buildingSearchRequest) );
         mav.addObject("listStaffs",userService.getStaffs());
         mav.addObject("districts", District.type());
         mav.addObject("typeCodes", TypeCode.type());
+        if(SecurityUtils.getAuthorities().contains("ROLE_STAFF")){
+            Long staffId = SecurityUtils.getPrincipal().getId();
+            buildingSearchRequest.setStaffId(staffId);
+            mav.addObject("buildingList",buildingService.searchBuildings(buildingSearchRequest) );
+        }
+        else{
+            mav.addObject("buildingList",buildingService.searchBuildings(buildingSearchRequest) );
+        }
         return mav;
     }
     // Thêm tòa nhà

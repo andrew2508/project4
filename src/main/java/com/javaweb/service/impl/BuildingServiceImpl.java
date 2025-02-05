@@ -37,10 +37,11 @@ public class BuildingServiceImpl implements BuildingService {
     public ResponseDTO listStaffs(Long buildingId) {
         BuildingEntity building = buildingRepository.findById(buildingId).get();
         System.out.println(building);
-        List<UserEntity> staffs = userRepository.findByStatusAndRoles_Code(1,"STAFF");
-        List<UserEntity> staffAssignment = building.getUserEntities();
+        List<UserEntity> staffs = userRepository.findByStatusAndRoles_Code(1,"STAFF");// lấy ra tất cả staff
+        List<UserEntity> staffAssignment = building.getUserEntities(); // lấy ra các staff trong building dc xét
         List<StaffResponseDTO> staffResponseDTOS = new ArrayList<>();
         ResponseDTO responseDTO = new ResponseDTO();
+        // đánh dấu những staff có trong building
         for (UserEntity it : staffs) {
             StaffResponseDTO staffResponseDTO = new StaffResponseDTO();
             staffResponseDTO.setFullName(it.getFullName());

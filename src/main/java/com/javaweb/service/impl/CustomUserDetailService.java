@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service
 public class CustomUserDetailService implements UserDetailsService {
-
+//UserDetailsService là của spring security
     @Autowired
     private IUserService userService;
 

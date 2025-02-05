@@ -17,9 +17,9 @@
         <ul class="breadcrumb">
           <li>
             <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="#">Home</a>
+            <a href="#">Trang chủ</a>
           </li>
-          <li class="active">Dashboard</li>
+          <li class="active">Chi tiết tòa nhà</li>
         </ul><!-- /.breadcrumb -->
       </div>
 
@@ -27,11 +27,7 @@
 
         <div class="page-header">
           <h1>
-            Dashboard
-            <small>
-              <i class="ace-icon fa fa-angle-double-right"></i>
-              overview &amp; stats
-            </small>
+            Thông tin tòa nhà
           </h1>
 
         </div><!-- /.page-header -->
@@ -258,12 +254,12 @@
       data: JSON.stringify(data),
       contentType:"application/json",
       dataType: "JSON",
-      success: function (respond){
+      success: function (response){
         console.log("Success");
       },
-      error: function(respond){
+      error: function(response){
         console.log("failed");
-        console.log(respond);
+        console.log(response);
       }
     });
   }

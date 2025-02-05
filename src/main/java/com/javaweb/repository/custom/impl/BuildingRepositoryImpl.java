@@ -2,8 +2,6 @@ package com.javaweb.repository.custom.impl;
 
 import com.javaweb.entity.BuildingEntity;
 import com.javaweb.model.request.BuildingSearchRequest;
-import com.javaweb.model.response.BuildingSearchResponse;
-import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.custom.BuildingRepositoryCustom;
 import org.springframework.stereotype.Repository;
 
@@ -54,33 +52,33 @@ public class BuildingRepositoryImpl implements BuildingRepositoryCustom {
             ex.printStackTrace();
         }
     }
-    public static void querySpecial(BuildingSearchRequest buildingSearchRequest,StringBuilder where) {
-        Long staffId = buildingSearchRequest.getStaffId();
-        if (staffId != null) {
-            where.append(" AND assignmentbuilding.staffid = " + staffId);
-        }
-        Long rentAreaTo = buildingSearchRequest.getAreaTo();
-        Long rentAreaFrom = buildingSearchRequest.getAreaFrom();
-        if (rentAreaTo != null || rentAreaFrom != null) {
-            if (rentAreaFrom != null) {
-                where.append(" AND rentarea.value >= " + rentAreaFrom);
+    public static void querySpecial(BuildingSearchRequest buildingSearchRequest,StringBuilder where)
+        {
+            Long staffId = buildingSearchRequest.getStaffId();
+            if (staffId != null) {
+                where.append(" AND assignmentbuilding.staffid = " + staffId);
             }
-            if (rentAreaTo != null) {
-                where.append(" AND rentarea.value <= " + rentAreaTo);
-            }
+            Long rentAreaTo = buildingSearchRequest.getAreaTo();
+            Long rentAreaFrom = buildingSearchRequest.getAreaFrom();
+            if (rentAreaTo != null || rentAreaFrom != null) {
+                if (rentAreaFrom != null) {
+                    where.append(" AND rentarea.value >= " + rentAreaFrom);
+                }
+                if (rentAreaTo != null) {
+                    where.append(" AND rentarea.value <= " + rentAreaTo);
+                }
 
-        }
-        Long rentPriceTo = buildingSearchRequest.getRentPriceTo();
-        Long rentPriceFrom = buildingSearchRequest.getRentPriceFrom();
-        if (rentPriceTo != null || rentPriceFrom != null) {
-            if (rentPriceFrom != null) {
-                where.append(" AND b.rentprice >= " + rentPriceFrom);
             }
-            if (rentPriceTo != null) {
-                where.append(" AND b.rentprice <= " + rentPriceTo);
-            }
-        }
-        if(buildingSearchRequest.getTypeCode() != null && buildingSearchRequest.getTypeCode().size()!=0) {
+            Long rentPriceTo = buildingSearchRequest.getRentPriceTo();
+            Long rentPriceFrom = buildingSearchRequest.getRentPriceFrom();
+            if (rentPriceTo != null || rentPriceFrom != null) {
+                if (rentPriceFrom != null) {
+                    where.append(" AND b.rentprice >= " + rentPriceFrom);
+                }
+                if (rentPriceTo != null) {
+                    where.append(" AND b.rentprice <= " + rentPriceTo);
+                }
+            }   if(buildingSearchRequest.getTypeCode() != null && buildingSearchRequest.getTypeCode().size()!=0) {
             List<String> code = new ArrayList<>();
             for(String item:buildingSearchRequest.getTypeCode()) {
                 code.add(""+item+"");

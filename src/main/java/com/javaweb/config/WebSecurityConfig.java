@@ -17,21 +17,22 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    // lay thông tin
     @Bean
     public UserDetailsService userDetailsService() {
-        return new CustomUserDetailService();
+        return new CustomUserDetailService(); // kiểm tra xem tài khoản có tồn tại ko rồi lâý role
     }
-
+    // mã hóa
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); // trong spring
     }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setUserDetailsService(userDetailsService());// tải thông tin ng dùng
+        authProvider.setPasswordEncoder(passwordEncoder()); //mã hóa và ktra tính hợp lệ của mk
         return authProvider;
     }
 
@@ -44,8 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
                 http.csrf().disable()
                 .authorizeRequests()
-                        //.antMatchers("/admin/building-edit").hasAnyRole("MANAGER")
-                        .antMatchers("/admin/**").hasAnyRole("MANAGER","STAFF","ADMIN")
+                        .antMatchers("/admin/building-edit","/admin/user-edit-{id}").hasRole("MANAGER")
+                        .antMatchers("/admin/**").hasAnyRole("MANAGER","STAFF")
                         .antMatchers("/login", "/resource/**", "/trang-chu", "/api/**").permitAll()
                 .and()
                 .formLogin().loginPage("/login").usernameParameter("j_username").passwordParameter("j_password").permitAll()
@@ -54,9 +55,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login?incorrectAccount").and()
                 .logout().logoutUrl("/logout").deleteCookies("JSESSIONID")
                 .and().exceptionHandling().accessDeniedPage("/access-denied").and()
-                .sessionManagement().maximumSessions(1).expiredUrl("/login?sessionTimeout");
+                .sessionManagement().maximumSessions(1).expiredUrl("/login?sessionTimeout"); // tg quản lý hệ thống
     }
 
+    // tùy chỉnh url vào sau khi đăng nhập thành công
     @Bean
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
         return new CustomSuccessHandler();

@@ -8,7 +8,10 @@ public enum TypeCode {
     NGUYEN_CAN("Nguyên căn"),
     NOI_THAT("Nội thất");
 
+    //định nghĩa bên trong enum (cái này có thể thay đổi vd private final int thoigian;)
     private final String name;
+
+
     TypeCode(String name) {
         this.name = name;
     }

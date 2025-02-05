@@ -43,6 +43,8 @@
                 <div class="widget-main">
                   <form:form id = "listForm" modelAttribute="modelSearch" action="${buildingListURL}" method="GET">
 <%--                   modelAttribute dùng để gán giá trị trc đó--%>
+<%--action dùng để send lên param kể hợp cùng method là GET--%>
+
                       <div class = "row">
                     <div class = "form-group">
                       <div class="col-xs-12">
@@ -124,13 +126,15 @@
                           <label class="name">SĐT quản lý</label>
                           <form:input class="form-control" path="managerPhone"/>
                         </div>
-                        <div class="col-sm-2">
-                          <label class="name">Nhân viên</label>
-                          <form:select class="form-control" path="staffId">
-                            <form:option value="">--Chọn Nhân Viên--</form:option>
-                            <form:options items="${listStaffs}"/>
-                          </form:select>
-                        </div>
+                        <security:authorize access="hasRole('MANAGER')">
+                           <div class="col-sm-2">
+                              <label class="name">Nhân viên</label>
+                                <form:select class="form-control" path="staffId">
+                                    <form:option value="">--Chọn Nhân Viên--</form:option>
+                                    <form:options items="${listStaffs}"/>
+                                </form:select>
+                            </div>
+                        </security:authorize>
                       </div>
                     </div>
                     <div class = "form-group">
@@ -157,8 +161,10 @@
               </div>
             </div>
 
+           <security:authorize access="hasRole('MANAGER')">
             <div class="pull-right">
-              <a href="/admin/building-edit">
+            <%--chuyển trang--%>
+              <a href="/admin/building-edit"> 
                 <button class="btn btn-info" title="Thêm tòa nhà">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building-add" viewBox="0 0 16 16">
                     <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0"/>
@@ -175,6 +181,7 @@
                 </svg>
               </button>
             </div>
+           </security:authorize>
           </div>
         </div>
 
@@ -227,17 +234,19 @@
                       <td>${item.brokerageFee}</td>
                       <td>
                         <div class="hidden-sm hidden-xs btn-group">
+                        <security:authorize access="hasRole('MANAGER')">
                           <button class="btn btn-xs btn-success" title="Giao tòa nhà" onclick="assigmentBuilding(${item.id})">
                             <i class="ace-icon glyphicon glyphicon-list"></i>
                           </button>
-
+                        </security:authorize>
                           <a class="btn btn-xs btn-info" title="Sửa tòa nhà" href="/admin/building-edit-${item.id}">
                             <i class="ace-icon fa fa-pencil bigger-120"></i>
                           </a>
-
+                        <security:authorize access="hasRole('MANAGER')">
                           <button class="btn btn-xs btn-danger" title="Xóa tòa nhà" onclick="deleteBuilding(${item.id})">
                             <i class="ace-icon fa fa-trash-o bigger-120"></i>
                           </button>
+                        </security:authorize>
                         </div>
                       </td>
                     </tr>
@@ -270,7 +279,7 @@
 						</thead>
 
 						<tbody>
-
+                                <%-- thêm trong phần ajax--%>
 						</tbody>
 					</table>
 					<input type="hidden" id = "buildingId" name="BuildingId" value="">
@@ -312,7 +321,7 @@
     function assigmentBuilding(buildingId){
       $('#assignmentBuildingModal').modal();
       loadStaff(buildingId);
-      $('#buildingId').val(buildingId);
+      $('#buildingId').val(buildingId); // gán giá trị cho buildingId trong hidden
     }
     $('#btnassignmentBuilding').click(function(e){
       e.preventDefault(); // Tránh load nham trang
@@ -344,9 +353,10 @@
         }
       });
     }
+    // nút tìm kiếm tòa nhà
     $('#btnSearchBuilding').click(function (e){
-      e.preventDefault();
-      $('#listForm').submit();
+      e.preventDefault(); //tránh load nhầm trang
+      $('#listForm').submit(); // đc gửi đến thuộc tính action của form
     });
 
     function deleteBuilding(id){
@@ -367,16 +377,20 @@
         url: "${buildingAPI}/"+data,
         data: JSON.stringify(data),
         contentType:"application/json",
-        dataType: "JSON",
-        success: function (respond){
+        // dataType: "JSON",
+        success: function (){
+          location.reload();
           console.log("Success");
         },
-        error: function(respond){
+        error: function(){
           console.log("failed");
-          console.log(respond);
         }
       });
     }
   </script>
 </body>
 </html>
+
+<%--note--%>
+<%--id thì dùng # vd: #btnDeleteBuilding--%>
+<%--biến thì dùng ${} vd: ${buildingAPI}--%>

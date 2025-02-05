@@ -72,7 +72,6 @@ public class BuildingConverter {
         for (String it:rentAreas){
             RentAreaEntity rentAreaEntity = new RentAreaEntity();
             rentAreaEntity.setValue(Integer.parseInt(it));
-            System.out.println("ok");
             rentAreaEntity.setBuilding(building);
             rentAreaRepository.save(rentAreaEntity);
         }
